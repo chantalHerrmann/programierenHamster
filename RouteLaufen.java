@@ -1,7 +1,4 @@
 import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Territory;import de.hamster.model.HamsterException;import de.hamster.model.HamsterInitialisierungsException;import de.hamster.model.HamsterNichtInitialisiertException;import de.hamster.model.KachelLeerException;import de.hamster.model.MauerDaException;import de.hamster.model.MaulLeerException;import de.hamster.model.MouthEmptyException;import de.hamster.model.WallInFrontException;import de.hamster.model.TileEmptyException;import de.hamster.debugger.model.Hamster;class RouteLaufen {
-	Hamster h = Hamster.getStandardHamster();	//Standardhamster initialisieren
-	int rows = Territorium.getAnzahlReihen();
-	int cols = Territorium.getAnzahlSpalten();
 	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++
     Lege 'path' als eindimensionales Integer Array an. 
     Dieses dient der Erfassung der Bewegungsrichtungen zum 
@@ -15,12 +12,14 @@ import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Te
     +++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     int[] path;
     
-	void erstelleRoute (int ind, int row, int col, int map[][]) {
+	void erstelleRoute (int ind, int row, int col, int map[][], Hamster h) {
     	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++
     	Iteriere rueckwaerts durch alle Indizes, suche dabei 
     	ausgehend vom Target immer genau einen Nachbarn und 
     	speichere die Bewegungsrichtung in 'path'.
     	+++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    	int rows = map[0].length;
+    	int cols = map.length;
     	path = new int[ind-1];
     	for (int i = ind; i > 1; i--){
     		//Prüfe jeweils vorher, ob der Nachbar gültig ist
@@ -38,10 +37,9 @@ import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Te
     			path[ind-i] = 1;
     		}
     	}
-    	hamsterLauf();
 	}
 	
-	void hamsterLauf () {
+	void hamsterLauf (Hamster h) {
     	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++
     	Iteriere rückwärts durch 'path'.
     	+++++++++++++++++++++++++++++++++++++++++++++++++++++*/

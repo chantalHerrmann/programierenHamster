@@ -1,5 +1,5 @@
 import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Territory;import de.hamster.model.HamsterException;import de.hamster.model.HamsterInitialisierungsException;import de.hamster.model.HamsterNichtInitialisiertException;import de.hamster.model.KachelLeerException;import de.hamster.model.MauerDaException;import de.hamster.model.MaulLeerException;import de.hamster.model.MouthEmptyException;import de.hamster.model.WallInFrontException;import de.hamster.model.TileEmptyException;import de.hamster.debugger.model.Hamster;class Suche {
-	RouteLaufen route = new RouteLaufen();
+	Pfad route = new Pfad();
 	boolean found = false; //Wahrheitswert 'found', welcher aussagt, ob Target gefunden wurde wird mit FALSCH initialisiert
 	int targetCol, targetRow; //Variablen für Koordinaten des Target anlegen
 	//Anzahl der Reihen und Spalten auslesen
@@ -36,7 +36,7 @@ import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Te
     	map[h.getSpalte()][h.getReihe()] = 1; //Markiere die Position des Hamsters mit 1
 	}
 
-	void sucheWeg (Hamster h) {
+	void suchePfad (Hamster h) {
 		getDetails(h);
 	    int ind = 1; //Erstelle Indexvariable und setze sie auf 1 //Diese wird verwendet, um die Reihenfolge der Felder zu speichern
     
@@ -57,7 +57,7 @@ import de.hamster.debugger.model.Territorium;import de.hamster.debugger.model.Te
 	    	ind++; //Erhöhe den Index um 1
 	    }
 	   int row = targetRow, col = targetCol;
-       route.erstelleRoute(ind, row, col, map, h);
+       route.erstellePfad(ind, row, col, map, h);
        route.hamsterLauf(h);
 	}
 

@@ -1,0 +1,7 @@
+/*object-oriented program*/class Main {
+	void main() {
+		Hamster h = Hamster.getStandardHamster();	//Standardhamster initialisieren
+		Suche suche = new Suche();      
+		suche.sucheWeg(h);
+	}
+} 
